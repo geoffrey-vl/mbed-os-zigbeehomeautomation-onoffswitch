@@ -1,0 +1,6 @@
+.BUILD
+BUILD
+.mbed
+projectfiles
+*.py*
+.vscode
