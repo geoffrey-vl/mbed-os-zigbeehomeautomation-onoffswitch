@@ -3,4 +3,5 @@ BUILD
 .mbed
 projectfiles
 *.py*
-.vscode
+.vscode/*
+/.vscode

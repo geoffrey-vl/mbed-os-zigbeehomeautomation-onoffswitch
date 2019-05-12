@@ -22,10 +22,11 @@
 #define __MBED_CONFIG_DATA__
 
 // Configuration parameters
-#define CLOCK_SOURCE                                                          USE_PLL_HSE_EXTC|USE_PLL_HSI                                                                     // set by target:NUCLEO_F429ZI
-#define CLOCK_SOURCE_USB                                                      1                                                                                                // set by target:NUCLEO_F429ZI
+#define CLOCK_SOURCE                                                          USE_PLL_MSI                                                                                      // set by target:NUCLEO_L496ZG
+#define FRAME_BUFFER_SIZE                                                     4                                                                                                // set by library:xbee
 #define KVSTORE_ENABLED                                                       1                                                                                                // set by library:kvstore
 #define LPTICKER_DELAY_TICKS                                                  1                                                                                                // set by target:FAMILY_STM32
+#define MAX_FRAME_PAYLOAD_LEN                                                 128                                                                                              // set by library:xbee
 #define MBED_CONF_ATMEL_RF_ASSUME_SPACED_SPI                                  1                                                                                                // set by library:atmel-rf[STM]
 #define MBED_CONF_ATMEL_RF_FULL_SPI_SPEED                                     7500000                                                                                          // set by library:atmel-rf
 #define MBED_CONF_ATMEL_RF_FULL_SPI_SPEED_BYTE_SPACING                        250                                                                                              // set by library:atmel-rf
@@ -143,7 +144,7 @@
 #define MBED_CONF_NSAPI_PRESENT                                               1                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_SOCKET_STATS_ENABLE                                   0                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_SOCKET_STATS_MAX_COUNT                                10                                                                                               // set by library:nsapi
-#define MBED_CONF_PLATFORM_CRASH_CAPTURE_ENABLED                              1                                                                                                // set by library:platform[NUCLEO_F429ZI]
+#define MBED_CONF_PLATFORM_CRASH_CAPTURE_ENABLED                              0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_CTHUNK_COUNT_MAX                                   8                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_DEFAULT_SERIAL_BAUD_RATE                           9600                                                                                             // set by library:platform
 #define MBED_CONF_PLATFORM_ERROR_ALL_THREADS_INFO                             0                                                                                                // set by library:platform
@@ -152,7 +153,7 @@
 #define MBED_CONF_PLATFORM_ERROR_HIST_ENABLED                                 0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_ERROR_HIST_SIZE                                    4                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_ERROR_REBOOT_MAX                                   1                                                                                                // set by library:platform
-#define MBED_CONF_PLATFORM_FATAL_ERROR_AUTO_REBOOT_ENABLED                    1                                                                                                // set by library:platform[NUCLEO_F429ZI]
+#define MBED_CONF_PLATFORM_FATAL_ERROR_AUTO_REBOOT_ENABLED                    0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_FORCE_NON_COPYABLE_ERROR                           0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_MAX_ERROR_FILENAME_LEN                             16                                                                                               // set by library:platform
 #define MBED_CONF_PLATFORM_POLL_USE_LOWPOWER_TIMER                            0                                                                                                // set by library:platform
@@ -203,10 +204,18 @@
 #define MBED_CONF_STORAGE_TDB_INTERNAL_INTERNAL_SIZE                          0                                                                                                // set by library:storage_tdb_internal
 #define MBED_CONF_TARGET_BOOT_STACK_SIZE                                      0x400                                                                                            // set by library:rtos[*]
 #define MBED_CONF_TARGET_DEEP_SLEEP_LATENCY                                   0                                                                                                // set by target:Target
+#define MBED_CONF_TARGET_LPTICKER_LPTIM                                       1                                                                                                // set by target:NUCLEO_L496ZG
 #define MBED_CONF_TARGET_LPTICKER_LPTIM_CLOCK                                 1                                                                                                // set by target:FAMILY_STM32
 #define MBED_CONF_TARGET_LPUART_CLOCK_SOURCE                                  USE_LPUART_CLK_LSE|USE_LPUART_CLK_PCLK1                                                          // set by target:FAMILY_STM32
 #define MBED_CONF_TARGET_LSE_AVAILABLE                                        1                                                                                                // set by target:FAMILY_STM32
-#define MBED_CONF_TARGET_NETWORK_DEFAULT_INTERFACE_TYPE                       ETHERNET                                                                                         // set by target:NUCLEO_F429ZI
+#define MBED_CONF_XBEE_BAUDRATE                                               9600                                                                                             // set by library:xbee
+#define MBED_CONF_XBEE_RADIO_CTS                                              NC                                                                                               // set by application[NUCLEO_L496ZG]
+#define MBED_CONF_XBEE_RADIO_ON_SLEEP                                         NC                                                                                               // set by library:xbee
+#define MBED_CONF_XBEE_RADIO_RESET                                            NC                                                                                               // set by library:xbee
+#define MBED_CONF_XBEE_RADIO_RTS                                              NC                                                                                               // set by application[NUCLEO_L496ZG]
+#define MBED_CONF_XBEE_RADIO_RX                                               NC                                                                                               // set by application[NUCLEO_L496ZG]
+#define MBED_CONF_XBEE_RADIO_SLEEP_REQ                                        NC                                                                                               // set by library:xbee
+#define MBED_CONF_XBEE_RADIO_TX                                               NC                                                                                               // set by application[NUCLEO_L496ZG]
 #define MBED_LFS_BLOCK_SIZE                                                   512                                                                                              // set by library:littlefs
 #define MBED_LFS_ENABLE_INFO                                                  0                                                                                                // set by library:littlefs
 #define MBED_LFS_INTRINSICS                                                   1                                                                                                // set by library:littlefs
@@ -221,7 +230,7 @@
 #define NSAPI_PPP_IPV6_AVAILABLE                                              0                                                                                                // set by library:lwip
 #define NVSTORE_ENABLED                                                       1                                                                                                // set by library:nvstore
 #define NVSTORE_MAX_KEYS                                                      16                                                                                               // set by library:nvstore
-#define STM32_D11_SPI_ETHERNET_PIN                                            PA_7                                                                                             // set by target:NUCLEO_F429ZI
+#define SYNC_OPS_TIMEOUT_MS                                                   2000                                                                                             // set by library:xbee
 // Macros
 #define MBEDTLS_CIPHER_MODE_CTR                                                                                                                                                // defined by library:SecureStore
 #define MBEDTLS_CMAC_C                                                                                                                                                         // defined by library:SecureStore

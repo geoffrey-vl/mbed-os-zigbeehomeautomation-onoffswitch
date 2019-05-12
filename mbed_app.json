@@ -2,8 +2,18 @@
     "target_overrides": {
         "*": {
             "platform.stdio-baud-rate"          : 115200,
+            "platform.default-serial-baud-rate" : 115200,
             "platform.stdio-convert-newlines"   : true,
             "platform.stdio-buffered-serial"    : true
+        },
+        "NUCLEO_L496ZG": {
+            "xbee.BAUDRATE": 9600,
+            "xbee.ENABLE_LOGGING" : 1,
+            "xbee.RADIO_TX": "PD_5",
+            "xbee.RADIO_RX": "PD_6",
+            "xbee.RADIO_RTS": "NC",
+            "xbee.RADIO_CTS": "NC",
+            "xbee.RADIO_RESET": "PD_7"
         }
     }
 }
