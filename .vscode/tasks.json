@@ -4,39 +4,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "make build",
-            "type": "shell",
-            "showOutput": "always",
-            "showInStatusBar": true,
-            "problemMatcher": {
-                "owner": "cpp",
-                "fileLocation": ["relative", "${workspaceRoot}/mbed-os"],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "args": ["-j"],
-            "linux": {
-                "command": "make"
-            },
-            "osx": {
-                "command": "make"
-            },
-            "windows": {
-                "command": "make.exe"
-            }
-        },
-        {
             "label": "mbed build",
             "type": "shell",
-            "command": "mbed compile",
+            "command": "mbed",
             "args": [
-                "--profile=mbed-os/tools/profiles/debug11.json",
+                "compile",
+                "--profile=mbed-os/tools/profiles/debug.json",
                 "-t",
                 "GCC_ARM",
                 "-m",
@@ -50,6 +23,58 @@
                 "$gcc"
             ],
             "showInStatusBar": true
+        },
+        {
+            "label": "mbed build and flash",
+            "type": "shell",
+            "command": "mbed",
+            "args": [
+                "compile",
+                "--profile=mbed-os/tools/profiles/debug.json",
+                "-t",
+                "GCC_ARM",
+                "-m",
+                "NUCLEO_L496ZG",
+                "-f"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "showInStatusBar": true
+        },
+        {
+            "label": "mbed clean",
+            "type": "shell",
+            "command": "echo cleaning BUILD... & rm -rf BUILD/ & echo Done! BUILD directory empty",
+            "showInStatusBar": false
+        },
+        {
+            "label": "startOpenOcdServer",
+            "type": "shell",
+            "command": "openocd -f board/st_nucleo_l496zg.cfg",
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "_____"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^.*GNU MCU Eclipse 64-bits Open On-Chip Debugger*$",
+                    "endsPattern": "^.*Info : Listening on port 3333 for gdb connections*$"
+                }
+            },
+            "showInStatusBar": false
+        },
+        {
+            "label": "stopOpenOcdServer",
+            "type": "shell",
+            "command": "pkill openocd & echo OpenOCD killed",
+            "showInStatusBar": false
         }
     ]
 }

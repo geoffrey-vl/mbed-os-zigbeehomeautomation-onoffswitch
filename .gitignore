@@ -5,3 +5,5 @@ projectfiles
 *.py*
 .vscode/*
 /.vscode
+.vscode/launch.json
+.vscode/tasks.json
